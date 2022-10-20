@@ -1,0 +1,11 @@
+FORLINX OK6254-C
+M:  KunYi Chen <kunyi.chen@gmail.com>
+S:  Maintained
+D:  board/forlinx/ok6254c
+F:  include/configs/ok6254c.h
+F:  configs/ok6254c_a53_defconfig
+F:  configs/ok6254c_r5_defconfig
+F:  arch/arm/dts/ok6254c.dts
+F:  arch/arm/dts/ok6254c-r5.dts
+F:  arch/arm/dts/ok6254c-u-boot.dtsi
+F:  arch/arm/dts/ok6254c-ddr4-1600MTs.dtsi
