@@ -201,4 +201,6 @@ source "board/ti/am62x/Kconfig"
 source "board/ti/j721e/Kconfig"
 source "board/ti/j721s2/Kconfig"
 source "board/ti/j784s4/Kconfig"
+source "board/forlinx/ok6254c/Kconfig"
+
 endif

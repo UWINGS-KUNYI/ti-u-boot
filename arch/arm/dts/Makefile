@@ -1026,6 +1026,9 @@ dtb-$(CONFIG_TARGET_DURIAN) += phytium-durian.dtb
 
 dtb-$(CONFIG_TARGET_PRESIDIO_ASIC) += ca-presidio-engboard.dtb
 
+dtb-$(CONFIG_TARGET_OK6254C_R5) += ok6254c-r5.dtb
+dtb-$(CONFIG_TARGET_OK6254C) += ok6254c.dtb
+
 targets += $(dtb-y)
 
 # Add any required device tree compiler flags here
