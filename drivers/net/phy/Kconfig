@@ -290,6 +290,11 @@ config PHY_XILINX_GMII2RGMII
 	  as bridge between MAC connected over GMII and external phy that
 	  is connected over RGMII interface.
 
+config PHY_MOTORCOMM
+	bool "Motorcomm YT8511/YT8521 Ethernet PHYs support"
+	---help---
+	  Adds for support the Motorcomm YT8511/YT8521 G-Bits PHY.
+
 config PHY_FIXED
 	bool "Fixed-Link PHY"
 	depends on DM_ETH
