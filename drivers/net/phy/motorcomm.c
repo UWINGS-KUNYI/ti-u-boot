@@ -26,42 +26,42 @@
 #include <miiphy.h>
 
 
-#define PHY_ID_YT8511				0x0000010a
-#define PHY_ID_YT8521				0x0000011a
-#define MOTORCOMM_PHY_ID_MASK			0x00000fff
+#define PHY_ID_YT8511			0x0000010a
+#define PHY_ID_YT8521			0x0000011a
+#define MOTORCOMM_PHY_ID_MASK		0x00000fff
 
 /* Extended Register's Address Offset Register */
-#define YTPHY_PAGE_SELECT			0x1e
+#define YTPHY_PAGE_SELECT		0x1e
 /* Extended Register's Data Register */
-#define YTPHY_PAGE_DATA				0x1f
+#define YTPHY_PAGE_DATA			0x1f
 
-#define YT8511_EXT_DELAY_DRIVE	0x0d
+#define YT8511_EXT_DELAY_DRIVE		0x0d
 
-#define YT8511_EXT_SLEEP_CTRL			0x27
-#define YT8511_ESC1R_SLEEP_SW			BIT(15)
-#define YT8511_PLLON_SLP			BIT(14)
+#define YT8511_EXT_SLEEP_CTRL		0x27
+#define YT8511_ESC1R_SLEEP_SW		BIT(15)
+#define YT8511_PLLON_SLP		BIT(14)
 
-#define YT8511_EXT_CLK_GATE			0x0c
+#define YT8511_EXT_CLK_GATE		0x0c
 /* 2b00 25m from pll
  * 2b01 25m from xtl *default*
  * 2b10 62.m from pll
  * 2b11 125m from pll
  */
 
-#define YT8511_CLK_125M				(BIT(2) | BIT(1))
+#define YT8511_CLK_125M			(BIT(2) | BIT(1))
 
 /* TX Gig-E Delay is bits 7:4, default 0x5
  * TX Fast-E Delay is bits 15:12, default 0xf
  * Delay = 150ps * N - 250ps
  * On = 2000ps, off = 50ps
  */
-#define YT8511_DELAY_GE_TX_EN			(0xf << 4)
-#define YT8511_DELAY_GE_TX_DIS			(0x2 << 4)
-#define YT8511_DELAY_FE_TX_EN			(0xf << 12)
-#define YT8511_DELAY_FE_TX_DIS			(0x2 << 12)
+#define YT8511_DELAY_GE_TX_EN		(0xf << 4)
+#define YT8511_DELAY_GE_TX_DIS		(0x2 << 4)
+#define YT8511_DELAY_FE_TX_EN		(0xf << 12)
+#define YT8511_DELAY_FE_TX_DIS		(0x2 << 12)
 
 /* RX Delay enabled = 1.8ns 1000T, 8ns 10/100T */
-#define YT8511_DELAY_RX				BIT(0)
+#define YT8511_DELAY_RX			BIT(0)
 
 /* Phy gmii Clock Gating Register */
 #define	YT8521_CLOCK_GATING_REG			0xc
@@ -71,6 +71,8 @@
 #define YT8521_ESC1R_SLEEP_SW			BIT(15)
 #define YT8521_ESC1R_PLLON_SLP			BIT(14)
 
+#define YT8521_CHIP_CONFIG_REG			0xA001
+#define YT8521_RX_DELAY_EN_2NS			BIT(8)
 #define YT8521_RGMII_CONFIG1_REG		0xA003
 /* TX Gig-E Delay is bits 3:0, default 0x1
  * TX Fast-E Delay is bits 7:4, default 0xf
@@ -79,14 +81,29 @@
  * On = 2250ps, off = 0ps
  */
 #define YT8521_RC1R_RX_DELAY_MASK		(0xF << 10)
-#define YT8521_RC1R_RX_DELAY_EN			(0xF << 10)
+#define YT8521_RC1R_RX_DELAY_EN			(0x1 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_150PS		(0x1 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_300PS		(0x2 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_450PS		(0x3 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_600PS		(0x4 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_750PS		(0x5 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_900PS		(0x6 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1050PS		(0x7 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1200PS		(0x8 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1350PS		(0x9 << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1500PS		(0xA << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1650PS		(0xB << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1800PS		(0xC << 10)
+#define YT8521_RC1R_RX_DELAY_EN_1950PS		(0xD << 10)
+#define YT8521_RC1R_RX_DELAY_EN_2100PS		(0xE << 10)
+#define YT8521_RC1R_RX_DELAY_EN_2250PS		(0xE << 10)
 #define YT8521_RC1R_RX_DELAY_DIS		(0x0 << 10)
 #define YT8521_RC1R_FE_TX_DELAY_MASK		(0xF << 4)
 #define YT8521_RC1R_FE_TX_DELAY_EN		(0xF << 4)
 #define YT8521_RC1R_FE_TX_DELAY_DIS		(0x0 << 4)
 #define YT8521_RC1R_GE_TX_DELAY_MASK		(0xF << 0)
 #define YT8521_RC1R_GE_TX_DELAY_EN		(0xF << 0)
-#define YT8521_RC1R_GE_TX_DELAY_DIS		(0x0 << 0)
+#define YT8521_RC1R_GE_TX_DELAY_DIS		(0x1 << 0)
 
 /* 0xA000, 0xA001, 0xA003 ,and 0xA006 ~ 0xA00A  are common ext registers
  * of yt8521 phy. There is no need to switch reg space when operating these
@@ -169,12 +186,13 @@ static int yt8521_config(struct phy_device *phydev)
     int val;
 
     /* default in UTP page */
+
     /* set rgmii delay mode */
     val = ytphy_read_ext(phydev, YT8521_RGMII_CONFIG1_REG);
     val &= ~(YT8521_RC1R_FE_TX_DELAY_MASK | YT8521_RC1R_GE_TX_DELAY_MASK);
     val &= ~(YT8521_RC1R_RX_DELAY_MASK);
-    val = YT8521_RC1R_FE_TX_DELAY_EN | YT8521_RC1R_GE_TX_DELAY_EN;
-    val |= YT8521_RC1R_RX_DELAY_EN;
+    val = YT8521_RC1R_FE_TX_DELAY_EN | YT8521_RC1R_GE_TX_DELAY_DIS;
+    val |= YT8521_RC1R_RX_DELAY_DIS;
     ytphy_write_ext(phydev, YT8521_RGMII_CONFIG1_REG, val);
 
     /* disable auto sleep */
