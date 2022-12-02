@@ -167,6 +167,10 @@ static void setup_serial(void)
 #endif
 
 #ifdef CONFIG_BOARD_LATE_INIT
+
+#define CTRL_MMR0_OLDI_PD_CTRL	0x00108700
+void mmr_unlock(phys_addr_t base, u32 partition);
+
 int board_late_init(void)
 {
 	#if 0
@@ -185,6 +189,9 @@ int board_late_init(void)
 	}
 	#endif
 
+	/* OLDI -- power on */
+	mmr_unlock(CTRL_MMR0_BASE, 2);
+	writel(0x00ul, CTRL_MMR0_OLDI_PD_CTRL);
 	return 0;
 }
 #endif
@@ -219,5 +226,8 @@ void spl_board_init(void)
 
 	/* Init DRAM size for R5/A53 SPL */
 	dram_init_banksize();
+
+	/* OLDI -- power on in spl stage */
+	// writel(0, CTRL_MMR0_OLDI_PD_CTRL);
 }
 #endif
