@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0+
 /*
  * This file was generated with the
- * AM62x SysConfig DDR Subsystem Register Configuration Tool v0.08.60
- * Wed Mar 16 2022 17:41:20 GMT-0500 (Central Daylight Time)
+ * AM62x SysConfig DDR Subsystem Register Configuration Tool v0.08.80
+ * Mon Dec 05 2022 16:09:19 GMT+0800 (Taipei Standard Time)
  * DDR Type: DDR4
  * Frequency = 800MHz (1600MTs)
  * Density: 16Gb
@@ -334,7 +334,7 @@
 #define DDRSS_CTL_318_DATA 0x3FFF0000
 #define DDRSS_CTL_319_DATA 0x000FFF00
 #define DDRSS_CTL_320_DATA 0xFFFFFFFF
-#define DDRSS_CTL_321_DATA 0x000FFF00
+#define DDRSS_CTL_321_DATA 0x00FFFF00
 #define DDRSS_CTL_322_DATA 0x0A000000
 #define DDRSS_CTL_323_DATA 0x0001FFFF
 #define DDRSS_CTL_324_DATA 0x01010101
